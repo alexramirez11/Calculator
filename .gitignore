@@ -1,0 +1,6 @@
+/vscode
+*.json
+/bin
+/lib
+Test.java
+MathListTest.java
