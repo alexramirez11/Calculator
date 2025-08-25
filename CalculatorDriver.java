@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class CalculatorDriver extends Application {
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
+    private Hashtable<Integer, Double> table = new Hashtable<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -242,7 +244,7 @@ public class CalculatorDriver extends Application {
         fifthRow = new HBox(prev, clearAll, decimal, operation);
         fifthRow.setId("buttonbox");
         fifthRow.setAlignment(Pos.CENTER);
-        sixthRow = new HBox(info, swapMenuBack, nextMenu);
+        sixthRow = new HBox(swapMenuBack, info, comma, nextMenu);
         sixthRow.setId("buttonbox");
         sixthRow.setAlignment(Pos.CENTER);
 
@@ -255,7 +257,7 @@ public class CalculatorDriver extends Application {
         page2ThirdRow = new HBox(cos, tan, csc , data);
         page2ThirdRow.setId("buttonbox");
         page2ThirdRow.setAlignment(Pos.CENTER);
-        page2FourthRow = new HBox(median, comma, mean/*, undo*/); // TODO replace undo button here with something else
+        page2FourthRow = new HBox(median/*, comma*/, mean/*, undo*/); // TODO replace undo && comma buttons here with something else
         page2FourthRow.setId("buttonbox");
         page2FourthRow.setAlignment(Pos.CENTER);
 

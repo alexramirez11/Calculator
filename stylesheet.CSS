@@ -11,10 +11,14 @@
     font: normal normal 15px verdana;
 }
 
+.label {
+    -fx-text-fill: white;
+}
+
 #box {
     -fx-background-color: black;
     background-color: black;
-    /* -fx-spacing: 20px; */
+    -fx-spacing: 20px;
 }
 
 #biggerbox {
