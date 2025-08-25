@@ -1,9 +1,38 @@
 .button:disabled {
-    color: darkred;
+    background-color: darkgrey;
+    -fx-background-color: darkgrey;
 }
 
 .button {
-    background-color: blue;
+    -fx-background-color: grey;
+    background-color: grey;
+    -fx-background-radius: 20px;
+    -fx-font: normal normal 15px verdana;
+    font: normal normal 15px verdana;
+}
+
+#box {
+    -fx-background-color: black;
+    background-color: black;
+    /* -fx-spacing: 20px; */
+}
+
+#biggerbox {
+    -fx-background-color: rgb(58, 55, 55);
+    background-color: rgb(58, 55, 55);
+    -fx-spacing: 15px;
+}
+
+#resultLabel {
+    -fx-text-fill: white;
+    -fx-font: normal normal 25px verdana;
+    font: normal normal 25px verdana;
+}
+
+#prevLabel {
+    -fx-text-fill: grey;
+    -fx-font: normal normal 25px verdana;
+    font: normal normal 25px verdana;
 }
 
 /* have some work to do here */

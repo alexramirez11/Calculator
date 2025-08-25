@@ -48,6 +48,7 @@ public class CalculatorDriver extends Application {
         forDecimal = new DecimalFormat(pattern);
         
         resultLabel = new Label(resultText);
+        resultLabel.setId("resultLabel");
         resultLabel.setFont(new Font(48));
         resultLabel.setPrefHeight(100);
         resultLabel.setPrefWidth(500);
@@ -118,7 +119,7 @@ public class CalculatorDriver extends Application {
         buttonList.add(prev);
         prev.setOnAction(this::processPrev);
 
-        sqrt = new Button("√");
+        sqrt = new Button("sqrt");
         buttonList.add(sqrt);
         sqrt.setOnAction(this::processSqrt);
 
@@ -202,20 +203,21 @@ public class CalculatorDriver extends Application {
         }
 
         prevResult = new Label("---");
+        prevResult.setId("prevLabel");
         prevBar = new HBox(prevResult);
-        prevBar.setStyle("-fx-background-color: gainsboro");
+        prevBar.setId("box");
         prevBar.setPrefHeight(75);
         prevBar.setPrefWidth(400);
         prevBar.setAlignment(Pos.CENTER);
 
         topBar = new HBox(resultLabel);
-        topBar.setStyle("-fx-background-color: grey");
+        topBar.setId("box");
         topBar.setPrefHeight(100);
         topBar.setPrefWidth(400);
         topBar.setAlignment(Pos.CENTER);
 
         infoString = "-This calculator is only in radians.\n-Input -- is to make a number negative.\n" + 
-                            "-The √ calculates the square root.\n-The ln calculates the natural log.\n" + 
+                            "-The sqrt calculates the square root.\n-The ln calculates the natural log.\n" + 
                             "-The log calculates the logarithm in base 10\n-The ! calculates the factorial of a number.\n" + 
                             "-The Mean finds the average of numbers in a comma\nseparated list.\n" + 
                             "-The Undo button deletes the last entered character in the\nequation.\n" + 
@@ -226,40 +228,51 @@ public class CalculatorDriver extends Application {
         infoLabel.setFont(new Font(18));
 
         firstRow = new HBox(one, two, three, plus);
+        firstRow.setId("buttonbox");
         firstRow.setAlignment(Pos.CENTER);
         secondRow = new HBox(four, five, six, minus);
+        secondRow.setId("buttonbox");
         secondRow.setAlignment(Pos.CENTER);
         thirdRow = new HBox(seven, eight, nine, multiply);
+        thirdRow.setId("buttonbox");
         thirdRow.setAlignment(Pos.CENTER);
         fourthRow = new HBox(zero, undo, clear, divide);
+        fourthRow.setId("buttonbox");
         fourthRow.setAlignment(Pos.CENTER);
         fifthRow = new HBox(prev, clearAll, decimal, operation);
+        fifthRow.setId("buttonbox");
         fifthRow.setAlignment(Pos.CENTER);
         sixthRow = new HBox(info, swapMenuBack, nextMenu);
+        sixthRow.setId("buttonbox");
         sixthRow.setAlignment(Pos.CENTER);
 
         page2FirstRow = new HBox(pi, exponent, sqrt, modulo);
+        page2FirstRow.setId("buttonbox");
         page2FirstRow.setAlignment(Pos.CENTER);
         page2SecondRow = new HBox(ln, log, factorial, sin);
+        page2SecondRow.setId("buttonbox");
         page2SecondRow.setAlignment(Pos.CENTER);
         page2ThirdRow = new HBox(cos, tan, csc , data);
+        page2ThirdRow.setId("buttonbox");
         page2ThirdRow.setAlignment(Pos.CENTER);
         page2FourthRow = new HBox(median, comma, mean/*, undo*/); // TODO replace undo button here with something else
+        page2FourthRow.setId("buttonbox");
         page2FourthRow.setAlignment(Pos.CENTER);
 
         infoMenu = new VBox(infoLabel, back);
 
         biggerBox = new VBox(prevBar, topBar, firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow);
+        biggerBox.setId("biggerbox");
         biggerBox.setAlignment(Pos.CENTER);
-        biggerBox.setPrefWidth(500);
-        biggerBox.setPrefHeight(470);
+        biggerBox.setPrefWidth(650); // old param: 500
+        biggerBox.setPrefHeight(500); // old param: 470
 
         operation.setDisable(true);
         swapMenuBack.setDisable(true);
 
         Group root = new Group(biggerBox);
-        Scene scene = new Scene(root, 500, 470, Color.GRAY);
-        scene.getStylesheets().add("stylesheet.CSS");
+        Scene scene = new Scene(root, 650, 500, Color.GRAY); // old parameters: root, 500, 470, Color.GRAY
+        scene.getStylesheets().add("stylesheet.css");
 
         calcStage.setTitle("Alex's Calculator");
         calcStage.setScene(scene);
