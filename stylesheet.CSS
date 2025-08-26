@@ -69,7 +69,11 @@
 #biggerbox {
     -fx-background-color: rgb(58, 55, 55);
     background-color: rgb(58, 55, 55);
-    -fx-spacing: 15px;
+    -fx-spacing: 13px;
+}
+
+#buttonbox {
+    -fx-spacing: 10px;
 }
 
 #resultLabel {
