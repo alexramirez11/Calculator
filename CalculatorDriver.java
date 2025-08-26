@@ -141,10 +141,12 @@ public class CalculatorDriver extends Application {
 
         ln = new Button("ln");
         buttonList.add(ln);
+        ln.setId("logarthmicOp");
         ln.setOnAction(this::processNaturalLog);
 
         log = new Button("Log");
         buttonList.add(log);
+        log.setId("logarthmicOp");
         log.setOnAction(this::processLog);
 
         factorial = new Button("!");
