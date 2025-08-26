@@ -1,6 +1,5 @@
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,8 +38,6 @@ public class CalculatorDriver extends Application {
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
-    private Hashtable<Integer, Double> table = new Hashtable<>();
-
     public static void main(String[] args) {
         launch(args);
     }
