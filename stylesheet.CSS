@@ -11,6 +11,31 @@
     font: normal normal 15px verdana;
 }
 
+.button:hover {
+    -fx-background-color: lightgreen;
+    background-color: lightgreen;
+}
+
+#opButton {
+    -fx-background-color: orange;
+    background-color: orange;
+}
+
+#opButton:hover {
+    -fx-background-color: lightgreen;
+    background-color: lightgreen;
+}
+
+#equalsButton {
+    -fx-background-color:lightblue;
+    background-color: lightblue;
+}
+
+#equalsButton:hover {
+    -fx-background-color: lightgreen;
+    background-color: lightgreen;
+}
+
 .label {
     -fx-text-fill: white;
 }

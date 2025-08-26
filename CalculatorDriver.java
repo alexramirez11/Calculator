@@ -91,15 +91,19 @@ public class CalculatorDriver extends Application {
         pi.setOnAction(this::processPi);
 
         plus = new Button("+");
+        plus.setId("opButton");
         buttonList.add(plus);
         plus.setOnAction(this::processPlus);
         minus = new Button("-");
+        minus.setId("opButton");
         buttonList.add(minus);
         minus.setOnAction(this::processMinus);
         multiply = new Button("*");
+        multiply.setId("opButton");
         buttonList.add(multiply);
         multiply.setOnAction(this::processMultiply);
         divide = new Button("/");
+        divide.setId("opButton");
         buttonList.add(divide);
         divide.setOnAction(this::processDivide);
 
@@ -111,6 +115,7 @@ public class CalculatorDriver extends Application {
         clearAll.setOnAction(this::processClearAll);
 
         operation = new Button("=");
+        operation.setId("equalsButton");
         buttonList.add(operation);
         operation.setOnAction(this::processEquals);
 
@@ -147,6 +152,7 @@ public class CalculatorDriver extends Application {
         factorial.setOnAction(this::processFactorial);
 
         modulo = new Button("%");
+        modulo.setId("opButton");
         buttonList.add(modulo);
         modulo.setOnAction(this::processModulo);
 
