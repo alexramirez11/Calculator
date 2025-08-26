@@ -23,11 +23,10 @@ import javafx.stage.Stage;
 public class CalculatorDriver extends Application {
     private final int BUTTON_WIDTH = 150;
     private final int BUTTON_HIGHT = 50;
-    private final Font BUTTON_FONT = new Font("Verdana", 15);
 
     private Label resultLabel, prevResult, infoLabel;
     private Button one, two, three, four, five, six, seven, eight, nine, zero, decimal, clearAll, clear, plus, minus, multiply, divide, operation, prev, sqrt, exponent, nextMenu;
-    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back;
+    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, sd;
     private VBox biggerBox, infoMenu;
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
     private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
@@ -38,6 +37,7 @@ public class CalculatorDriver extends Application {
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -182,6 +182,10 @@ public class CalculatorDriver extends Application {
         buttonList.add(median);
         median.setOnAction(this::processMedian);
 
+        sd = new Button("sd");
+        buttonList.add(sd);
+        sd.setOnAction(this::processStandardDeviation);
+
         undo = new Button("Undo");
         buttonList.add(undo);
         undo.setOnAction(this::processUndo);
@@ -196,7 +200,6 @@ public class CalculatorDriver extends Application {
         // back.setStyle("-fx-background-color: crimson");
 
         for (Button buttons : buttonList) {
-            buttons.setFont(BUTTON_FONT);
             buttons.setPrefHeight(BUTTON_HIGHT);
             buttons.setPrefWidth(BUTTON_WIDTH);
         }
@@ -254,7 +257,7 @@ public class CalculatorDriver extends Application {
         page2ThirdRow = new HBox(cos, tan, csc , data);
         page2ThirdRow.setId("buttonbox");
         page2ThirdRow.setAlignment(Pos.CENTER);
-        page2FourthRow = new HBox(median/*, comma*/, mean/*, undo*/); // TODO replace undo && comma buttons here with something else
+        page2FourthRow = new HBox(median, sd, mean/*, undo*/); // TODO replace undo && comma buttons here with something else
         page2FourthRow.setId("buttonbox");
         page2FourthRow.setAlignment(Pos.CENTER);
 
@@ -508,6 +511,34 @@ public class CalculatorDriver extends Application {
         clearStringList();
     }
 
+    private void processStandardDeviation(ActionEvent event) {
+        try {
+            processStandardDeviation();
+        } catch (NullPointerException e) {
+            clearAll();
+            resultLabel.setText("No data found. Hit the\nAC button to start over.");
+            resultLabel.setFont(new Font(20));
+        }
+    }
+
+    private void processStandardDeviation() {
+        prevString = "standard deviation(data)";
+        double mu = 0;
+        for (int i = 0; i < dataArray.length; i++) {
+            mu += dataArray[i];
+        }
+        mu = mu / dataArray.length;
+        double variance = 0;
+        for (int i = 0; i < dataArray.length; i++) {
+            variance += Math.pow(dataArray[i] - mu, 2);
+        }
+        variance = variance / dataArray.length;
+        double sd = Math.sqrt(variance);
+        resultLabel.setText("standard deviation(data): " + forDecimal.format(sd));
+        tempResult = sd;
+        clearStringList();
+    }
+
     private void processSqrt(ActionEvent event) {
         try {
             processSqrt();
@@ -550,7 +581,7 @@ public class CalculatorDriver extends Application {
     }
  
     private void processSqrt() {
-        prevString = "√(" + resultText + ")";
+        prevString = "sqrt(" + resultText + ")";
         double sqrtNum;
         if (resultText.equals("π")) {
             sqrtNum = Math.sqrt(Math.PI);
