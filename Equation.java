@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 
 public class Equation {
-    public enum Operations {PLUS, MINUS, MULTIPLY, DIVIDE, MODULO, NONE;}
 
     private String[] usable;
     private String expression;
@@ -53,7 +52,7 @@ public class Equation {
         return afterEval[0].evaluate();
     }
 
-    public String[] breakToChunks(String[] arr) {
+    private String[] breakToChunks(String[] arr) {
         String[] res = new String[arr.length];
         String endStr = arr[0];
         LinkedList<String> list = new LinkedList<>();
@@ -135,14 +134,6 @@ public class Equation {
             returned[i] = expArray[i];
         }
         return returned;
-    }
-
-    public double toDouble(String val) {
-        if (val.contains("N")) {
-            return 0 - Double.parseDouble(val.replace("N", ""));
-        } else {
-            return Double.parseDouble(val);
-        }
     }
 
     private String[] sanitize(String[] toClean) {

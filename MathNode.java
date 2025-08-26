@@ -5,10 +5,12 @@ public class MathNode {
     private MathNode prev, next;
     private int priority = 0;
     private boolean isEvaluated;
+    private String singleExp;
     
     public MathNode(String singleExp) {
-        this.op = findOperator(singleExp);
-        String[] split = splitForOperands(singleExp, op);
+        this.singleExp = singleExp;
+        this.op = findOperator(this.singleExp);
+        String[] split = splitForOperands(this.singleExp, op);
         this.firstOperand = toDouble(split[0]);
         this.secondOperand = toDouble(split[1]);
         prev = next = null;
@@ -39,7 +41,7 @@ public class MathNode {
                 isEvaluated = true;
                 return this.firstOperand % this.secondOperand;
             default:
-                return -99999.0;
+                throw new NoOperationException("expression: " + this.singleExp);
         }
     }
 
