@@ -48,8 +48,7 @@ public class Equation {
     }
 
     public double evaluate() {
-        MathNode[] afterEval = evalMultDivMod(pemdas, list);
-        return afterEval[0].evaluate();
+        return evalMultDivMod(pemdas, list)[0].evaluate();
     }
 
     private String[] breakToChunks(String[] arr) {
