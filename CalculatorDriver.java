@@ -108,9 +108,11 @@ public class CalculatorDriver extends Application {
         divide.setOnAction(this::processDivide);
 
         clear = new Button("C");
+        clear.setId("clearButton");
         buttonList.add(clear);
         clear.setOnAction(this::processClear);
         clearAll = new Button("AC");
+        clearAll.setId("clearButton");
         buttonList.add(clearAll);
         clearAll.setOnAction(this::processClearAll);
 
