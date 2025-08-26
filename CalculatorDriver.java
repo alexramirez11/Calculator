@@ -158,43 +158,53 @@ public class CalculatorDriver extends Application {
 
         sin = new Button("sin");
         buttonList.add(sin);
+        sin.setId("trigOp");
         sin.setOnAction(this::processSin);
 
         cos = new Button("cos");
         buttonList.add(cos);
+        cos.setId("trigOp");
         cos.setOnAction(this::processCosine);
 
         tan = new Button("tan");
         buttonList.add(tan);
+        tan.setId("trigOp");
         tan.setOnAction(this::processTangent);
 
         csc = new Button("csc");
         buttonList.add(csc);
+        csc.setId("trigOp");
         csc.setOnAction(this::processCosecant);
 
         data = new Button("data");
         buttonList.add(data);
         data.setOnAction(this::processData);
+        data.setId("statOp");
 
         comma = new Button(",");
         buttonList.add(comma);
         comma.setOnAction(this::processComma);
+        comma.setId("statOp");
 
         mean = new Button("Mean");
         buttonList.add(mean);
         mean.setOnAction(this::processMean);
+        mean.setId("statOp");
 
         median = new Button("Median");
         buttonList.add(median);
         median.setOnAction(this::processMedian);
+        median.setId("statOp");
 
         popSD = new Button("pop. sd");
         buttonList.add(popSD);
         popSD.setOnAction(this::processPopStandardDeviation);
+        popSD.setId("statOp");
 
         sampleSD = new Button("sample sd");
         buttonList.add(sampleSD);
         sampleSD.setOnAction(this::processSampleSD);
+        sampleSD.setId("statOp");
 
         undo = new Button("Undo");
         buttonList.add(undo);

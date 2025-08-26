@@ -16,6 +16,26 @@
     background-color: lightgreen;
 }
 
+#trigOp {
+    -fx-background-color: lightseagreen;
+    background-color: lightseagreen;
+}
+
+#trigOp:hover {
+    -fx-background-color: lightgreen;
+    background-color: lightgreen;
+}
+
+#statOp {
+    -fx-background-color: darkkhaki;
+    background-color: darkkhaki;
+}
+
+#statOp:hover {
+    -fx-background-color: lightgreen;
+    background-color: lightgreen;
+}
+
 #opButton {
     -fx-background-color: orange;
     background-color: orange;
