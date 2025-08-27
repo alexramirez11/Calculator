@@ -143,12 +143,10 @@ public class CalculatorDriver extends Application {
 
         ln = new Button("ln");
         buttonList.add(ln);
-        ln.setId("logarthmicOp");
         ln.setOnAction(this::processNaturalLog);
 
         log = new Button("Log");
         buttonList.add(log);
-        log.setId("logarthmicOp");
         log.setOnAction(this::processLog);
 
         factorial = new Button("!");
@@ -269,10 +267,10 @@ public class CalculatorDriver extends Application {
         page2FirstRow = new HBox(pi, exponent, sqrt, modulo);
         page2FirstRow.setId("buttonbox");
         page2FirstRow.setAlignment(Pos.CENTER);
-        page2SecondRow = new HBox(ln, log, factorial, sin);
+        page2SecondRow = new HBox(ln, log, factorial);
         page2SecondRow.setId("buttonbox");
         page2SecondRow.setAlignment(Pos.CENTER);
-        page2ThirdRow = new HBox(cos, tan, csc);
+        page2ThirdRow = new HBox(sin, cos, tan, csc);
         page2ThirdRow.setId("buttonbox");
         page2ThirdRow.setAlignment(Pos.CENTER);
         page2FourthRow = new HBox(median, sd, mean, data);

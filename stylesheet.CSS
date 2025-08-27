@@ -26,16 +26,6 @@
     background-color: lightgreen;
 }
 
-#logarthmicOp {
-    -fx-background-color: darkgreen;
-    background-color: darkgreen;
-}
-
-#logarthmicOp:hover {
-    -fx-background-color: lightgreen;
-    background-color: lightgreen;
-}
-
 #trigOp {
     -fx-background-color: lightseagreen;
     background-color: lightseagreen;
