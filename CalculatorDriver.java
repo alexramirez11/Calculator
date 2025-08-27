@@ -26,7 +26,7 @@ public class CalculatorDriver extends Application {
 
     private Label resultLabel, prevResult, infoLabel;
     private Button one, two, three, four, five, six, seven, eight, nine, zero, decimal, clearAll, clear, plus, minus, multiply, divide, operation, prev, sqrt, exponent, nextMenu;
-    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, popSD, sampleSD;
+    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, sd;
     private VBox biggerBox, infoMenu;
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
     private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
@@ -200,15 +200,10 @@ public class CalculatorDriver extends Application {
         median.setOnAction(this::processMedian);
         median.setId("statOp");
 
-        popSD = new Button("pop. sd");
-        buttonList.add(popSD);
-        popSD.setOnAction(this::processPopStandardDeviation);
-        popSD.setId("statOp");
-
-        sampleSD = new Button("sample sd");
-        buttonList.add(sampleSD);
-        sampleSD.setOnAction(this::processSampleSD);
-        sampleSD.setId("statOp");
+        sd = new Button("sd");
+        buttonList.add(sd);
+        sd.setOnAction(this::processStandardDeviation);
+        sd.setId("statOp");
 
         undo = new Button("Undo");
         buttonList.add(undo);
@@ -277,10 +272,10 @@ public class CalculatorDriver extends Application {
         page2SecondRow = new HBox(ln, log, factorial, sin);
         page2SecondRow.setId("buttonbox");
         page2SecondRow.setAlignment(Pos.CENTER);
-        page2ThirdRow = new HBox(cos, tan, csc , data);
+        page2ThirdRow = new HBox(cos, tan, csc);
         page2ThirdRow.setId("buttonbox");
         page2ThirdRow.setAlignment(Pos.CENTER);
-        page2FourthRow = new HBox(median, popSD, mean, sampleSD); // TODO replace undo && comma buttons here with something else
+        page2FourthRow = new HBox(median, sd, mean, data);
         page2FourthRow.setId("buttonbox");
         page2FourthRow.setAlignment(Pos.CENTER);
 
@@ -534,9 +529,9 @@ public class CalculatorDriver extends Application {
         clearStringList();
     }
 
-    private void processPopStandardDeviation(ActionEvent event) {
+    private void processStandardDeviation(ActionEvent event) {
         try {
-            processPopStandardDeviation();
+            processStandardDeviation();
         } catch (NullPointerException e) {
             clearAll();
             resultLabel.setText("No data found. Hit the\nAC button to start over.");
@@ -544,18 +539,8 @@ public class CalculatorDriver extends Application {
         }
     }
 
-    private void processSampleSD(ActionEvent e) {
-        try {
-            sampleStandardDeviation();
-        } catch (NullPointerException event) {
-            clearAll();
-            resultLabel.setText("No data found. Hit the\nAC button to start over.");
-            resultLabel.setFont(new Font(20));
-        }
-    }
-
-    private void processPopStandardDeviation() {
-        prevString = "pop. sd(data)";
+    private void processStandardDeviation() {
+        prevString = "Standard Deviation(data)";
         double mu = 0;
         for (int i = 0; i < dataArray.length; i++) {
             mu += dataArray[i];
@@ -567,25 +552,7 @@ public class CalculatorDriver extends Application {
         }
         variance = variance / dataArray.length;
         double sd = Math.sqrt(variance);
-        resultLabel.setText("pop. sd(data): " + forDecimal.format(sd));
-        tempResult = sd;
-        clearStringList();
-    }
-
-    private void sampleStandardDeviation() {
-        prevString = "sample sd(data)";
-        double mu = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            mu += dataArray[i];
-        }
-        mu = mu / dataArray.length;
-        double variance = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            variance += Math.pow(dataArray[i] - mu, 2);
-        }
-        variance = variance / (dataArray.length - 1);
-        double sd = Math.sqrt(variance);
-        resultLabel.setText("sample sd(data): " + forDecimal.format(sd));
+        resultLabel.setText("sd(data): " + forDecimal.format(sd));
         tempResult = sd;
         clearStringList();
     }
