@@ -9,6 +9,8 @@
     -fx-background-radius: 20px;
     -fx-font: normal normal 15px verdana;
     font: normal normal 15px verdana;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
 }
 
 .button:hover {

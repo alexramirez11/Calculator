@@ -21,8 +21,6 @@ import javafx.stage.Stage;
  */
 
 public class CalculatorDriver extends Application {
-    private final int BUTTON_WIDTH = 150;
-    private final int BUTTON_HIGHT = 50;
 
     private Label resultLabel, prevResult, infoLabel;
     private Button one, two, three, four, five, six, seven, eight, nine, zero, decimal, clearAll, clear, plus, minus, multiply, divide, operation, prev, sqrt, exponent, nextMenu;
@@ -31,7 +29,6 @@ public class CalculatorDriver extends Application {
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
     private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
     private List<String> stringList = new LinkedList<String>();
-    private List<Button> buttonList = new LinkedList<Button>();
     private String[] dataStringArray;
     private double[] dataArray;
     private double tempResult = 0;
@@ -54,171 +51,126 @@ public class CalculatorDriver extends Application {
         resultLabel.setAlignment(Pos.CENTER);
 
         one = new Button("1");
-        buttonList.add(one);
         one.setOnAction(this::processOne);
         two = new Button("2");
-        buttonList.add(two);
         two.setOnAction(this::processTwo);
         three = new Button("3");
-        buttonList.add(three);
         three.setOnAction(this::processThree);
         four = new Button("4");
-        buttonList.add(four);
         four.setOnAction(this::processFour);
         five = new Button("5");
-        buttonList.add(five);
         five.setOnAction(this::processFive);
         six = new Button("6");
-        buttonList.add(six);
         six.setOnAction(this::processSix);
         seven = new Button("7");
-        buttonList.add(seven);
         seven.setOnAction(this::processSeven);
         eight = new Button("8");
-        buttonList.add(eight);
         eight.setOnAction(this::processEight);
         nine = new Button("9");
-        buttonList.add(nine);
         nine.setOnAction(this::processNine);
         zero = new Button("0");
-        buttonList.add(zero);
         zero.setOnAction(this::processZero);
         decimal = new Button(".");
-        buttonList.add(decimal);
         decimal.setOnAction(this::processDecimal);
         pi = new Button("π");
-        buttonList.add(pi);
         pi.setOnAction(this::processPi);
 
         plus = new Button("+");
         plus.setId("opButton");
-        buttonList.add(plus);
         plus.setOnAction(this::processPlus);
         minus = new Button("-");
         minus.setId("opButton");
-        buttonList.add(minus);
         minus.setOnAction(this::processMinus);
         multiply = new Button("*");
         multiply.setId("opButton");
-        buttonList.add(multiply);
         multiply.setOnAction(this::processMultiply);
         divide = new Button("/");
         divide.setId("opButton");
-        buttonList.add(divide);
         divide.setOnAction(this::processDivide);
 
         clear = new Button("C");
         clear.setId("clearButton");
-        buttonList.add(clear);
         clear.setOnAction(this::processClear);
         clearAll = new Button("AC");
         clearAll.setId("clearButton");
-        buttonList.add(clearAll);
         clearAll.setOnAction(this::processClearAll);
 
         operation = new Button("=");
         operation.setId("equalsButton");
-        buttonList.add(operation);
         operation.setOnAction(this::processEquals);
 
         prev = new Button("Prev");
-        buttonList.add(prev);
         prev.setOnAction(this::processPrev);
 
         sqrt = new Button("sqrt");
-        buttonList.add(sqrt);
         sqrt.setOnAction(this::processSqrt);
 
         exponent = new Button("x²");
-        buttonList.add(exponent);
         exponent.setOnAction(this::processExponent);
 
         nextMenu = new Button("->");
-        buttonList.add(nextMenu);
         nextMenu.setOnAction(this::processNextMenu);
 
         swapMenuBack = new Button("<-");
-        buttonList.add(swapMenuBack);
         swapMenuBack.setOnAction(this::processSwapMenuBack);
 
         ln = new Button("ln");
-        buttonList.add(ln);
         ln.setOnAction(this::processNaturalLog);
 
         log = new Button("Log");
-        buttonList.add(log);
         log.setOnAction(this::processLog);
 
         factorial = new Button("!");
-        buttonList.add(factorial);
         factorial.setOnAction(this::processFactorial);
 
         modulo = new Button("%");
         modulo.setId("opButton");
-        buttonList.add(modulo);
         modulo.setOnAction(this::processModulo);
 
         sin = new Button("sin");
-        buttonList.add(sin);
         sin.setId("trigOp");
         sin.setOnAction(this::processSin);
 
         cos = new Button("cos");
-        buttonList.add(cos);
         cos.setId("trigOp");
         cos.setOnAction(this::processCosine);
 
         tan = new Button("tan");
-        buttonList.add(tan);
         tan.setId("trigOp");
         tan.setOnAction(this::processTangent);
 
         csc = new Button("csc");
-        buttonList.add(csc);
         csc.setId("trigOp");
         csc.setOnAction(this::processCosecant);
 
         data = new Button("data");
-        buttonList.add(data);
         data.setOnAction(this::processData);
         data.setId("statOp");
 
         comma = new Button(",");
-        buttonList.add(comma);
         comma.setOnAction(this::processComma);
         comma.setId("statOp");
 
         mean = new Button("Mean");
-        buttonList.add(mean);
         mean.setOnAction(this::processMean);
         mean.setId("statOp");
 
         median = new Button("Median");
-        buttonList.add(median);
         median.setOnAction(this::processMedian);
         median.setId("statOp");
 
         sd = new Button("sd");
-        buttonList.add(sd);
         sd.setOnAction(this::processStandardDeviation);
         sd.setId("statOp");
 
         undo = new Button("Undo");
-        buttonList.add(undo);
         undo.setOnAction(this::processUndo);
 
         info = new Button("Info");
-        buttonList.add(info);
         info.setOnAction(this::processInfo);
 
         back = new Button("Back");
-        buttonList.add(back);
         back.setOnAction(this::processBack);
-
-        for (Button buttons : buttonList) {
-            buttons.setPrefHeight(BUTTON_HIGHT);
-            buttons.setPrefWidth(BUTTON_WIDTH);
-        }
 
         prevResult = new Label("---");
         prevResult.setId("prevLabel");
