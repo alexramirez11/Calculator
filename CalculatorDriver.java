@@ -261,10 +261,10 @@ public class CalculatorDriver extends Application {
         thirdRow = new HBox(seven, eight, nine, multiply);
         thirdRow.setId("buttonbox");
         thirdRow.setAlignment(Pos.CENTER);
-        fourthRow = new HBox(zero, undo, clear, divide);
+        fourthRow = new HBox(zero, decimal, undo, divide);
         fourthRow.setId("buttonbox");
         fourthRow.setAlignment(Pos.CENTER);
-        fifthRow = new HBox(prev, clearAll, decimal, operation);
+        fifthRow = new HBox(prev, clearAll, clear, operation);
         fifthRow.setId("buttonbox");
         fifthRow.setAlignment(Pos.CENTER);
         sixthRow = new HBox(swapMenuBack, info, comma, nextMenu);
