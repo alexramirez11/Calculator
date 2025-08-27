@@ -40,6 +40,9 @@ public class MathNode {
                 }
                 isEvaluated = true;
                 return this.firstOperand % this.secondOperand;
+            case EXPONENT:
+                isEvaluated = true;
+                return Math.pow(this.firstOperand, this.secondOperand);
             default:
                 throw new NoOperationException("expression: " + this.singleExp);
         }
@@ -96,7 +99,7 @@ public class MathNode {
     }
 
     private String getBaseOperator(String val) {
-        if (val.compareTo("+") == 0 || val.compareTo("-") == 0 || val.compareTo("*") == 0 || val.compareTo("/") == 0 || val.compareTo("%") == 0) {
+        if (val.compareTo("+") == 0 || val.compareTo("-") == 0 || val.compareTo("*") == 0 || val.compareTo("/") == 0 || val.compareTo("%") == 0 || val.compareTo("^") == 0) {
             return val;
         }
         return null;
@@ -120,6 +123,9 @@ public class MathNode {
             case MODULO:
                 split = exp.split("%");
                 return split;
+            case EXPONENT:
+                split = exp.split("^");
+                return split;
             default:
                 return null;
         }
@@ -141,6 +147,9 @@ public class MathNode {
         } else if (opToken.compareTo("%") == 0) {
             priority = 1;
             return Operations.MODULO;
+        } else if (opToken.compareTo("^") == 0) {
+            priority = 0;
+            return Operations.EXPONENT;
         } else {
             priority = 99999;
             return Operations.NONE;

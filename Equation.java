@@ -74,6 +74,10 @@ public class Equation {
         return trimArray(res);
     }
 
+    // private MathNode[] evalExponent(MathNode[] arr, MathList<MathNode> list) {
+
+    // }
+
     private MathNode[] evalMultDivMod(MathNode[] arr, MathList<MathNode> list) {
         
         for (int i = 0; i < arr.length; i++) {

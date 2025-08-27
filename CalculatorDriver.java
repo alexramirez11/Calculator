@@ -23,8 +23,8 @@ import javafx.stage.Stage;
 public class CalculatorDriver extends Application {
 
     private Label resultLabel, prevResult, infoLabel;
-    private Button one, two, three, four, five, six, seven, eight, nine, zero, decimal, clearAll, clear, plus, minus, multiply, divide, operation, prev, sqrt, exponent, nextMenu;
-    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, sd;
+    private Button one, two, three, four, five, six, seven, eight, nine, zero, decimal, clearAll, clear, plus, minus, multiply, divide, operation, prev, sqrt, squared, nextMenu;
+    private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, sd, exponent;
     private VBox biggerBox, infoMenu;
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
     private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
@@ -105,8 +105,11 @@ public class CalculatorDriver extends Application {
         sqrt = new Button("sqrt");
         sqrt.setOnAction(this::processSqrt);
 
-        exponent = new Button("x²");
-        exponent.setOnAction(this::processExponent);
+        squared = new Button("x²");
+        squared.setOnAction(this::processExponent);
+
+        exponent = new Button("^");
+        exponent.setOnAction();
 
         nextMenu = new Button("->");
         nextMenu.setOnAction(this::processNextMenu);
@@ -149,7 +152,6 @@ public class CalculatorDriver extends Application {
 
         comma = new Button(",");
         comma.setOnAction(this::processComma);
-        comma.setId("statOp");
 
         mean = new Button("Mean");
         mean.setOnAction(this::processMean);
@@ -216,7 +218,7 @@ public class CalculatorDriver extends Application {
         sixthRow.setId("buttonbox");
         sixthRow.setAlignment(Pos.CENTER);
 
-        page2FirstRow = new HBox(pi, exponent, sqrt, modulo);
+        page2FirstRow = new HBox(pi, squared, sqrt, modulo);
         page2FirstRow.setId("buttonbox");
         page2FirstRow.setAlignment(Pos.CENTER);
         page2SecondRow = new HBox(ln, log, factorial);
