@@ -1,3 +1,7 @@
+/**
+ * This class represents a single operation in mathmatics. A math node will only contain one operation and two operands.
+ * @author Alex Ramirez
+ */
 public class MathNode {
 
     private double firstOperand, secondOperand;
@@ -17,6 +21,13 @@ public class MathNode {
         isEvaluated = false;
     }
 
+    /**
+     * This method will evaluate the two operands in the math node based off the operation in the node.
+     * @throws ZeroException if the operation is division or modulo, and the second operand is zero.
+     * @throws NoOperationException if there is no operator found in the expression given to this node's constructor.
+     * @return A double that is the result of doing the operation contained in the node
+     * 
+     */
     public double evaluate() {
         switch (this.op) {
             case PLUS:
@@ -47,7 +58,7 @@ public class MathNode {
                 throw new NoOperationException("expression: " + this.singleExp);
         }
     }
-
+    
     private double toDouble(String numStr) {
         if (numStr.contains("N")) {
             return 0 - Double.parseDouble(numStr.replace("N", ""));
@@ -56,6 +67,11 @@ public class MathNode {
         }
     }
 
+    /**
+     * This method checks to see if this MathNode and the given MathNode are identical.
+     * @param toCompare - The MathNode to compare to.
+     * @return A boolean value indicating if the MathNode is identical
+     */
     public boolean isIdentical(MathNode toCompare) {
         if ((this.firstOperand == toCompare.getFirstOperand()) && (this.secondOperand == toCompare.getSecondOperand()) && (this.op == toCompare.getOperation())) {
             return true;
@@ -63,26 +79,53 @@ public class MathNode {
         return false;
     }
 
+    /**
+     * This method checks to see if two nodes are chained together by their operands.
+     * @param toCompare - The MathNode to compare to
+     * @return A boolean value indicating if this MathNode's second operand is the exact same as the given MathNode's first operand
+     */
     public boolean isChainedByOperand(MathNode toCompare) {
         return this.secondOperand == toCompare.firstOperand;
     }
 
+    /**
+     * This method checks whether or not this MathNode has already been evaluated.
+     * @return A boolean indicating if this MathNode is evaluated
+     */
     public boolean isEvaluated() {
         return isEvaluated;
     }
 
+    /**
+     * This method checks whether or not this MathNode has a previous MathNode linked to it.
+     * @return A boolean indicating if there is a previous MathNode linked
+     */
     public boolean hasPrevious() {
         return prev != null;
     }
 
+    /**
+     * This method checks whether or not this MathNode has a next MathNode linked to it.
+     * @return A boolean indicating if there is a next MathNode linked
+     */
     public boolean hasNext() {
         return next != null;
     }
 
+    /**
+     * This method checks if the given MathNode is this MathNode's previous MathNode.
+     * @param toCompare - The MathNode to check
+     * @return A boolean indicating if toCompare is this MathNode's previous MathNode
+     */
     public boolean isPrevious(MathNode toCompare) {
         return this.prev.isIdentical(toCompare);
     }
 
+    /**
+     * This method checks if the given MathNode is this MathNode's next MathNode.
+     * @param toCompare - The MathNode to check
+     * @return A boolean indicating if toCompare is this MathNode's next MathNode
+     */
     public boolean isNext(MathNode toCompare) {
         return this.next.isIdentical(toCompare);
     }

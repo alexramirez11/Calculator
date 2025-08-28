@@ -4,7 +4,7 @@ public class Equation {
 
     private String[] usable;
     private String expression;
-    private MathList<MathNode> list = new MathList<>();
+    private MathList list = new MathList();
     private MathNode[] pemdas;
     
     public Equation(String expression) {
@@ -74,7 +74,7 @@ public class Equation {
         return trimArray(res);
     }
 
-    private MathNode[] evalExponent(MathNode[] arr, MathList<MathNode> list) {
+    private MathNode[] evalExponent(MathNode[] arr, MathList list) {
         if (arr.length == 1) {
             return arr;
         }
@@ -109,7 +109,7 @@ public class Equation {
         return evalMultDivMod(list.sortToPemdas(), list);
     }
 
-    private MathNode[] evalMultDivMod(MathNode[] arr, MathList<MathNode> list) {
+    private MathNode[] evalMultDivMod(MathNode[] arr, MathList list) {
         
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].hasNext() && arr[i].getPriority() == 1 && (arr[i].getNext().getPriority() == arr[i].getPriority())) {
@@ -144,7 +144,7 @@ public class Equation {
         return evalPlusMinus(list.sortToPemdas(), list);
     }
 
-    private MathNode[] evalPlusMinus(MathNode[] arr, MathList<MathNode> list) {
+    private MathNode[] evalPlusMinus(MathNode[] arr, MathList list) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].hasNext() && arr[i].getPriority() == 2 && (arr[i].isChainedByOperand(arr[i].getNext()))) {
                 double result = arr[i].evaluate();

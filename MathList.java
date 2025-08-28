@@ -2,16 +2,29 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class MathList<MathNOde> implements Iterable<MathNode> {
+/**
+ * This class is a LinkedList specifically for MathNodes that has unique methods needed to evaluate a mathmatical expression.
+ * This class implements the Iterable interface.
+ * @author Alex Ramirez
+ */
+public class MathList implements Iterable<MathNode> {
 
     private int size;
     private MathNode head, tail;
     
+    /**
+     * This constructor initializes an empty MathList.
+     */
     public MathList() {
         size = 0;
         head = tail = null;
     }
 
+    /**
+     * This method will add a MathNode to the end of the MathList.
+     * @param node - The MathNode to add
+     * @throws NullPointerException if the node parameter is null
+     */
     public void add(MathNode node) {
         if (node == null) {
             throw new NullPointerException();
@@ -33,6 +46,11 @@ public class MathList<MathNOde> implements Iterable<MathNode> {
         }
     }
 
+    /**
+     * This method removes a specifc MathNode from the MathList.
+     * @param toRemove - The MathNode to remove
+     * @return The removed MathNode from the list
+     */
     public MathNode remove(MathNode toRemove) {
         if (toRemove == null) {
             throw new NullPointerException();
@@ -73,6 +91,10 @@ public class MathList<MathNOde> implements Iterable<MathNode> {
         return node;
     }
 
+    /**
+     * This method sorts all MathNodes currently in the MathList in an order that follows order of operations.
+     * @return A MathNode array
+     */
     public MathNode[] sortToPemdas() {
         MathNode[] pemdas = new MathNode[getSize()];
         int count = 0;
@@ -99,6 +121,11 @@ public class MathList<MathNOde> implements Iterable<MathNode> {
         return pemdas;
     }
 
+    /**
+     * This method finds the given MathNode in the MathList and returns it.
+     * @param toFind - The MathNode to find in the MathList
+     * @return The MathNode in the list if it was found. Otherwise returns null
+     */
     public MathNode find(MathNode toFind) {
         Iterator<MathNode> iter = this.iterator();
         while (iter.hasNext()) {
@@ -111,6 +138,10 @@ public class MathList<MathNOde> implements Iterable<MathNode> {
         return null;
     }
 
+    /**
+     * Counts and returns the size of the MathList
+     * @return An integer count
+     */
     public int getSize() {
         return size;
     }
