@@ -1,5 +1,9 @@
 import java.util.LinkedList;
 
+/**
+ * This class represents a mathmatical equation, containing methods to evaluate the equation.
+ * @author Alex Ramirez
+ */
 public class Equation {
 
     private String[] usable;
@@ -7,6 +11,10 @@ public class Equation {
     private MathList list = new MathList();
     private MathNode[] pemdas;
     
+    /**
+     * This method builds an equation object based off the given string.
+     * @param expression - A string containing a mathmatical equation to be evaluated
+     */
     public Equation(String expression) {
         this.expression = expression;
         usable = breakToChunks(breakDown(expression));
@@ -16,6 +24,12 @@ public class Equation {
         pemdas = list.sortToPemdas();
     }
 
+    /**
+     * This method breaks down the equation into individual numbers and operators.
+     * @param expression - The expression that needs to be broken down
+     * @return A string array
+     * @throws NoOperationException if there is operator found in the resulting array
+     */
     private String[] breakDown(String expression) {
         String[] temp = sanitize(expression.split(""));
         String[] toUse = new String[temp.length];
@@ -47,6 +61,10 @@ public class Equation {
         return trimArray(toUse);
     }
 
+    /**
+     * This method evaluates the equation given to the Equation object's constructor.
+     * @return A double represeting the answer to the equation
+     */
     public double evaluate() {
         return evalExponent(pemdas, list)[0].evaluate();
     }
@@ -186,10 +204,6 @@ public class Equation {
         }
         
         return clean;
-    }
-
-    public int size() {
-        return usable.length;
     }
 
     private boolean isBaseOperator(String val) {
