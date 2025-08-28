@@ -124,7 +124,7 @@ public class MathNode {
                 split = exp.split("%");
                 return split;
             case EXPONENT:
-                split = exp.split("^");
+                split = exp.split("\\^");
                 return split;
             default:
                 return null;
