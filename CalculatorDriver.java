@@ -106,10 +106,10 @@ public class CalculatorDriver extends Application {
         sqrt.setOnAction(this::processSqrt);
 
         squared = new Button("x²");
-        squared.setOnAction(this::processExponent);
+        squared.setOnAction(this::processSquared);
 
         exponent = new Button("^");
-        exponent.setOnAction();
+        exponent.setOnAction(this::processExponent);
 
         nextMenu = new Button("->");
         nextMenu.setOnAction(this::processNextMenu);
@@ -221,7 +221,7 @@ public class CalculatorDriver extends Application {
         page2FirstRow = new HBox(pi, squared, sqrt, modulo);
         page2FirstRow.setId("buttonbox");
         page2FirstRow.setAlignment(Pos.CENTER);
-        page2SecondRow = new HBox(ln, log, factorial);
+        page2SecondRow = new HBox(ln, log, factorial, exponent);
         page2SecondRow.setId("buttonbox");
         page2SecondRow.setAlignment(Pos.CENTER);
         page2ThirdRow = new HBox(sin, cos, tan, csc);
@@ -318,6 +318,13 @@ public class CalculatorDriver extends Application {
         resultText += "π";
         resultLabel.setText(resultText);
         stringList.add(tempString);
+    }
+    private void processExponent(ActionEvent event) {
+        tempString = "^";
+        resultText += "^";
+        resultLabel.setText(resultText);
+        stringList.add(tempString);
+        operation.setDisable(false);
     }
     private void processPlus(ActionEvent event) {
         tempString = "+";
@@ -518,9 +525,9 @@ public class CalculatorDriver extends Application {
             resultLabel.setFont(new Font(20));
         }
     }
-    private void processExponent(ActionEvent event) {
+    private void processSquared(ActionEvent event) {
         try {
-            processExponent();
+            processSquared();
         } catch (NumberFormatException e) {
             clearAll();
             resultLabel.setText("Please type a number and then hit the x² button.\nHit the AC button to start over.");
@@ -570,7 +577,7 @@ public class CalculatorDriver extends Application {
         }
     }
 
-    private void processExponent() {
+    private void processSquared() {
         prevString = "(" + resultText + ")²";
         double squaredNum;
         if (resultText.equals("π")) {

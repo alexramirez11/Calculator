@@ -48,7 +48,7 @@ public class Equation {
     }
 
     public double evaluate() {
-        return evalMultDivMod(pemdas, list)[0].evaluate();
+        return evalExponent(pemdas, list)[0].evaluate();
     }
 
     private String[] breakToChunks(String[] arr) {
@@ -75,9 +75,38 @@ public class Equation {
     }
 
     private MathNode[] evalExponent(MathNode[] arr, MathList<MathNode> list) {
-        
+        if (arr.length == 1) {
+            return arr;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].hasNext() && arr[i].getPriority() == 0 && (arr[i].getNext().getPriority() == arr[i].getPriority())) {
+                if (!arr[i].isEvaluated()) {
+                    double res = arr[i].evaluate();
+                    arr[i].getNext().setFirstOperand(res);
+                    if (arr[i].hasPrevious()) {
+                        arr[i].getPrevious().setSecondOperand(res);
+                    }
+                    list.remove(arr[i]);
+                }
+            } else if (arr[i].hasNext() && arr[i].getPriority() == 0 && (arr[i].getNext().getPriority() > arr[i].getPriority())) {
+                if (!arr[i].isEvaluated()) {
+                    double res = arr[i].evaluate();
+                    arr[i].getNext().setFirstOperand(res);
+                    if (arr[i].hasPrevious()) {
+                        arr[i].getPrevious().setSecondOperand(res);
+                    }
+                    list.remove(arr[i]);
+                }
+            } else if (!arr[i].hasNext() && arr[i].hasPrevious() && arr[i].getPriority() == 0 && (arr[i].getPrevious().getPriority() > arr[i].getPriority())) {
+                if (!arr[i].isEvaluated()) {
+                    double result = arr[i].evaluate();
+                    arr[i].getPrevious().setSecondOperand(result);
+                    list.remove(arr[i]);
+                }
+            }
+        }
 
-        return evalMultDivMod(arr, list);
+        return evalMultDivMod(list.sortToPemdas(), list);
     }
 
     private MathNode[] evalMultDivMod(MathNode[] arr, MathList<MathNode> list) {
@@ -164,7 +193,7 @@ public class Equation {
     }
 
     private boolean isBaseOperator(String val) {
-        if (val.compareTo("+") == 0 || val.compareTo("-") == 0 || val.compareTo("*") == 0 || val.compareTo("/") == 0 || val.compareTo("%") == 0) {
+        if (val.compareTo("+") == 0 || val.compareTo("-") == 0 || val.compareTo("*") == 0 || val.compareTo("/") == 0 || val.compareTo("%") == 0 || val.compareTo("^") == 0) {
             return true;
         }
         return false;
