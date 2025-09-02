@@ -521,7 +521,7 @@ public class CalculatorDriver extends Application {
             processSqrt();
         } catch (NumberFormatException e) {
             clearAll();
-            resultLabel.setText("Please type a number and then hit the √ button.\nHit the AC button to start over.");
+            resultLabel.setText("Please type a number and then hit the sqrt button.\nHit the AC button to start over.");
             resultLabel.setFont(new Font(20));
         }
     }
