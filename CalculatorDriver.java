@@ -40,9 +40,7 @@ public class CalculatorDriver extends Application {
     }
 
     public void start(Stage calcStage) throws Exception {
-
         forDecimal = new DecimalFormat(pattern);
-        
         resultLabel = new Label(resultText);
         resultLabel.setId("resultLabel");
         resultLabel.setFont(new Font(48));
