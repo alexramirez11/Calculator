@@ -128,7 +128,9 @@ public class Equation {
     }
 
     private MathNode[] evalMultDivMod(MathNode[] arr, MathList list) {
-        
+        if (arr.length == 1) {
+            return arr;
+        }
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].hasNext() && arr[i].getPriority() == 1 && (arr[i].getNext().getPriority() == arr[i].getPriority())) {
                 if (!arr[i].isEvaluated()) {
@@ -163,6 +165,9 @@ public class Equation {
     }
 
     private MathNode[] evalPlusMinus(MathNode[] arr, MathList list) {
+        if (arr.length == 1) {
+            return arr;
+        }
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].hasNext() && arr[i].getPriority() == 2 && (arr[i].isChainedByOperand(arr[i].getNext()))) {
                 double result = arr[i].evaluate();
