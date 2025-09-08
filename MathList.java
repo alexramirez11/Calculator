@@ -50,6 +50,7 @@ public class MathList implements Iterable<MathNode> {
      * This method removes a specifc MathNode from the MathList.
      * @param toRemove - The MathNode to remove
      * @return The removed MathNode from the list
+     * @throws NullPointerException if the toRemove parameter is null
      */
     public MathNode remove(MathNode toRemove) {
         if (toRemove == null) {
