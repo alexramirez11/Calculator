@@ -807,7 +807,7 @@ public class CalculatorDriver extends Application {
         }
     }
 
-    // *******************Operation Calculation Methods*******************
+    // *******************Operation Calculation Method*******************
     private void processEquals(ActionEvent event) {
         try {
             Equation eq = new Equation(resultText);
