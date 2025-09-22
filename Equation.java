@@ -89,12 +89,6 @@ public class Equation {
             blocks++;
         }
 
-        for (String s : res) {
-            if (s != null) {
-                System.out.println(s);
-            }
-        }
-
         return trimArray(res);
     }
 
