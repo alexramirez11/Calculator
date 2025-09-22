@@ -204,6 +204,9 @@ public class Equation {
         if (isBaseOperator(toClean[0]) && toClean[0].compareTo("-") != 0) {
             throw new NumberFormatException();
         }
+        if (toClean[0].compareTo("-") == 0) {
+            toClean[0] = "N";
+        }
         for (int i = 0; i < toClean.length; i++) {
             if (isBaseOperator(toClean[i]) && isBaseOperator(toClean[i - 1]) && toClean[i].compareTo("-") == 0) {
                 clean[i] = "N";
