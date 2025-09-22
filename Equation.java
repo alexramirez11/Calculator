@@ -201,7 +201,7 @@ public class Equation {
 
     private String[] sanitize(String[] toClean) {
         String[] clean = new String[toClean.length];
-        if (isBaseOperator(toClean[0])) {
+        if (isBaseOperator(toClean[0]) && toClean[0].compareTo("-") != 0) {
             throw new NumberFormatException();
         }
         for (int i = 0; i < toClean.length; i++) {
