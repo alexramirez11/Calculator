@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
+ * This class is a calculator that supports basic mathmatical operations and presents it in a javafx gui.
  * @author Alex Ramirez
  */
 
