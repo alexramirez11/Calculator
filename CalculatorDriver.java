@@ -190,7 +190,9 @@ public class CalculatorDriver extends Application {
         infoString = "-This calculator is only in radians.\n-Input -- is to make a number negative.\n" + 
                             "-The sqrt calculates the square root.\n-The ln calculates the natural log.\n" + 
                             "-The log calculates the logarithm in base 10\n-The ! calculates the factorial of a number.\n" + 
-                            "-The Mean finds the average of numbers in a comma\nseparated list.\n" + 
+                            "-The Mean finds the average of numbers in a comma separated list.\n" + 
+                            "-To input data, enter a comma separated list, and then hit the data button.\n" +
+                            "-The sd button finds the standard deviation of the current data set.\n" + 
                             "-The Undo button deletes the last entered character in the\nequation.\n" + 
                             "-The only operations that require the click of the equals\nbutton are addition, subtraction, mulitplication, division,\nand modulo.\n" + 
                             "-All other operations require that only one number is in the\nequation, before clicking on the operation's button.";
@@ -245,7 +247,7 @@ public class CalculatorDriver extends Application {
         Scene scene = new Scene(root, 650, 500, Color.GRAY); // old parameters: root, 500, 470, Color.GRAY
         scene.getStylesheets().add("stylesheet.css");
 
-        calcStage.setTitle("Alex's Calculator");
+        calcStage.setTitle("Calculator");
         calcStage.setScene(scene);
         calcStage.setResizable(false);
         calcStage.show();
