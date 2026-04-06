@@ -624,12 +624,7 @@ public class CalculatorDriver extends Application {
     }
     private void processSin() {
         prevString = "sin(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.sin(Math.PI);
-        } else {
-            num = Math.sin(Double.parseDouble(resultText));
-        }
+        double num = Trig.sin(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
         clearStringList();
@@ -646,12 +641,7 @@ public class CalculatorDriver extends Application {
     }
     private void processCosine() {
         prevString = "cos(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.cos(Math.PI);
-        } else {
-            num = Math.cos(Double.parseDouble(resultText));
-        }
+        double num = Trig.cos(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
         clearStringList();
@@ -668,12 +658,7 @@ public class CalculatorDriver extends Application {
     }
     private void processTangent() {
         prevString = "tan(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.tan(Math.PI);
-        } else {
-            num = Math.tan(Double.parseDouble(resultText));
-        }
+        double num = Trig.tan(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
         clearStringList();
@@ -696,7 +681,7 @@ public class CalculatorDriver extends Application {
             resultLabel.setText("The cosecant of π is undefined.\nHit the AC button to start over.");
             resultLabel.setFont(new Font(20));
         } else {
-            num = (1 / Math.sin(Double.parseDouble(resultText)));
+            num = Trig.csc(resultText);
             resultLabel.setText("" + forDecimal.format(num));
             tempResult = num;
             clearStringList();
