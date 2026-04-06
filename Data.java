@@ -1,5 +1,9 @@
 import java.util.Arrays;
 
+/**
+ * This class is to hold data saved by the user and provides statistical operations for the data.
+ * @author Alex Ramirez
+ */
 public class Data {
     private double[] data;
     private String pi = "π";
@@ -19,6 +23,10 @@ public class Data {
         }
     }
 
+    /**
+     * This method calculates the mean of the currently saved data.
+     * @return The average of the data as a double
+     */
     public Double mean() {
         double avg = 0;
         for (double d : data) {
@@ -27,6 +35,10 @@ public class Data {
         return avg / data.length;
     }
 
+    /**
+     * This method finds the median of the currently saved data.
+     * @return The median of the data as a double
+     */
     public Double median() {
         double[] cl = data.clone();
         Arrays.sort(cl);
@@ -39,6 +51,10 @@ public class Data {
         return med;
     }
 
+    /**
+     * This method calculates the standard deviation of the currently saved data.
+     * @return The standard deviation of the data as a double
+     */
     public Double sd() {
         double mu = 0;
         for (double n : data) {
@@ -53,6 +69,9 @@ public class Data {
         return Math.sqrt(variance);
     }
 
+    /**
+     * This method clears the current data by being null. This will prevent operations attempted on an empty data set.
+     */
     public void clean() {
         data = null;
     }
