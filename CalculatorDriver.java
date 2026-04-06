@@ -1,8 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -28,13 +24,11 @@ public class CalculatorDriver extends Application {
     private Button ln, log, factorial, modulo, sin, cos, tan, csc, data, median, swapMenuBack, pi, comma, mean, undo, info, back, sd, exponent;
     private VBox biggerBox, infoMenu;
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
-    private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
-    private List<String> stringList = new LinkedList<String>();
-    private String[] dataStringArray;
-    private double[] dataArray;
+    private String resultText = "", pattern = "#.#####", prevString = "", infoString = "";
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
+    private Data stats;
 
     public static void main(String[] args) {
         launch(args);
@@ -255,124 +249,86 @@ public class CalculatorDriver extends Application {
 
     // *******************Button Processes*******************
     private void processOne(ActionEvent e) {
-        tempString = "1";
         resultText += "1";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processTwo(ActionEvent e) {
-        tempString = "2";
         resultText += "2";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processThree(ActionEvent e) {
-        tempString = "3";
         resultText += "3";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processFour(ActionEvent e) {
-        tempString = "4";
         resultText += "4";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processFive(ActionEvent e) {
-        tempString = "5";
         resultText += "5";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processSix(ActionEvent e) {
-        tempString = "6";
         resultText += "6";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processSeven(ActionEvent e) {
-        tempString = "7";
         resultText += "7";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processEight(ActionEvent e) {
-        tempString = "8";
         resultText += "8";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processNine(ActionEvent e) {
-        tempString = "9";
         resultText += "9";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processZero(ActionEvent e) {
-        tempString = "0";
         resultText += "0";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processPi(ActionEvent e) {
-        tempString = "" + Math.PI;
         resultText += "π";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processExponent(ActionEvent event) {
-        tempString = "^";
         resultText += "^";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processPlus(ActionEvent event) {
-        tempString = "+";
         resultText += "+";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processMinus(ActionEvent event) {
-        tempString = "-";
         resultText += "-";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processMultiply(ActionEvent event) {
-        tempString = "*";
         resultText += "*";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processDivide(ActionEvent event) {
-        tempString = "/";
         resultText += "/";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processModulo(ActionEvent event) {
-        tempString = "%";
         resultText += "%";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         operation.setDisable(false);
     }
     private void processDecimal(ActionEvent event) {
-        tempString = ".";
         resultText += ".";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processComma(ActionEvent event) {
-        tempString = ",";
         resultText += ",";
         resultLabel.setText(resultText);
-        stringList.add(tempString);
     }
     private void processClear(ActionEvent e) {
         clear();
@@ -386,10 +342,8 @@ public class CalculatorDriver extends Application {
             resultLabel.setText("No previous value found.");
             resultLabel.setFont(new Font(20));
         } else {
-        tempString = "" + tempResult;
         resultText += "" + forDecimal.format(tempResult);
         resultLabel.setText(resultText);
-        stringList.add(tempString);
         }
     }
 
@@ -407,7 +361,6 @@ public class CalculatorDriver extends Application {
         str.deleteCharAt(resultText.length() - 1);
         resultText = str.toString();
         resultLabel.setText(resultText);
-        stringList.remove(stringList.size() - 1);
     }
 
     private void processMean(ActionEvent event) {
@@ -436,33 +389,18 @@ public class CalculatorDriver extends Application {
 
     private void processData() {
         prevString = "data = [" + resultText + "]";
-        dataStringArray = resultText.split(",");
-        if (dataStringArray.length == 0) {
-            throw new NullPointerException();
-        }
-        dataArray = new double[dataStringArray.length];
-        for (int i = 0; i < dataStringArray.length; i++) {
-            if (dataStringArray[i].equals("π")) {
-                dataArray[i] = Math.PI;
-            } else {
-                dataArray[i] = Double.parseDouble(dataStringArray[i]);
-            }
-        }
+        stats = new Data(resultText);
 
         resultLabel.setText("Data: [" + resultText + "]");
-        clearStringList();
+        
     }
 
     private void processMean() {
-        prevString = "mean(data)";
-        double avg = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            avg += dataArray[i];
-        }
-        avg = avg / dataArray.length;
+        prevString = "mean(" + stats + ")";
+        double avg = stats.mean();
         resultLabel.setText("Mean(data): " + forDecimal.format(avg));
         tempResult = avg;
-        clearStringList();
+        
     }
 
     private void processMedian(ActionEvent event) {
@@ -476,17 +414,11 @@ public class CalculatorDriver extends Application {
     }
 
     private void processMedian() {
-        prevString = "median(data)";
-        Arrays.sort(dataArray);
-        int mid = dataArray.length / 2;
-        double med = dataArray[mid];
-        if (dataArray.length % 2 == 0) {
-            med = dataArray[mid - 1] + dataArray[mid];
-            med = med / 2;
-        }
+        prevString = "median("+ stats + ")";
+        double med = stats.median();
         resultLabel.setText("Median(data): " + med);
         tempResult = med;
-        clearStringList();
+        
     }
 
     private void processStandardDeviation(ActionEvent event) {
@@ -500,21 +432,11 @@ public class CalculatorDriver extends Application {
     }
 
     private void processStandardDeviation() {
-        prevString = "Standard Deviation(data)";
-        double mu = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            mu += dataArray[i];
-        }
-        mu = mu / dataArray.length;
-        double variance = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            variance += Math.pow(dataArray[i] - mu, 2);
-        }
-        variance = variance / dataArray.length;
-        double sd = Math.sqrt(variance);
+        prevString = "Standard Deviation(" + stats + ")";
+        double sd = stats.sd();
         resultLabel.setText("sd(data): " + forDecimal.format(sd));
         tempResult = sd;
-        clearStringList();
+        
     }
 
     private void processSqrt(ActionEvent event) {
@@ -555,7 +477,7 @@ public class CalculatorDriver extends Application {
         } 
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
-        clearStringList();
+        
     }
  
     private void processSqrt() {
@@ -565,7 +487,7 @@ public class CalculatorDriver extends Application {
             sqrtNum = Math.sqrt(Math.PI);
             resultLabel.setText("" + forDecimal.format(sqrtNum));
             tempResult = sqrtNum;
-        clearStringList();
+        
         } else if (resultText.contains("-")) {
             clearAll();
             resultLabel.setText("Cannot calculate the square root\nof a negative number.");
@@ -574,7 +496,7 @@ public class CalculatorDriver extends Application {
             sqrtNum = Math.sqrt(Double.parseDouble(resultText));
             resultLabel.setText("" + forDecimal.format(sqrtNum));
             tempResult = sqrtNum;
-            clearStringList();
+            
         }
     }
 
@@ -588,7 +510,7 @@ public class CalculatorDriver extends Application {
         }
         resultLabel.setText("" + forDecimal.format(squaredNum));
         tempResult = squaredNum;
-        clearStringList();
+        
     }
 
     private void processLog(ActionEvent event) {
@@ -610,7 +532,7 @@ public class CalculatorDriver extends Application {
         }
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
-        clearStringList();
+        
     }
 
     private void processSin(ActionEvent event) {
@@ -624,15 +546,10 @@ public class CalculatorDriver extends Application {
     }
     private void processSin() {
         prevString = "sin(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.sin(Math.PI);
-        } else {
-            num = Math.sin(Double.parseDouble(resultText));
-        }
+        double num = Trig.sin(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
-        clearStringList();
+        
     }
 
     private void processCosine(ActionEvent event) {
@@ -646,15 +563,10 @@ public class CalculatorDriver extends Application {
     }
     private void processCosine() {
         prevString = "cos(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.cos(Math.PI);
-        } else {
-            num = Math.cos(Double.parseDouble(resultText));
-        }
+        double num = Trig.cos(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
-        clearStringList();
+        
     }
 
     private void processTangent(ActionEvent event) {
@@ -668,15 +580,10 @@ public class CalculatorDriver extends Application {
     }
     private void processTangent() {
         prevString = "tan(" + resultText + ")";
-        double num;
-        if (resultText.equals("π")) {
-            num = Math.tan(Math.PI);
-        } else {
-            num = Math.tan(Double.parseDouble(resultText));
-        }
+        double num = Trig.tan(resultText);
         resultLabel.setText("" + forDecimal.format(num));
         tempResult = num;
-        clearStringList();
+        
     }
 
     private void processCosecant(ActionEvent event) {
@@ -696,10 +603,10 @@ public class CalculatorDriver extends Application {
             resultLabel.setText("The cosecant of π is undefined.\nHit the AC button to start over.");
             resultLabel.setFont(new Font(20));
         } else {
-            num = (1 / Math.sin(Double.parseDouble(resultText)));
+            num = Trig.csc(resultText);
             resultLabel.setText("" + forDecimal.format(num));
             tempResult = num;
-            clearStringList();
+            
         }
     }
 
@@ -727,7 +634,7 @@ public class CalculatorDriver extends Application {
             num = factorial(num);
             resultLabel.setText("" + forDecimal.format(num));
             tempResult = num;
-            clearStringList();
+            
         }
     }
     private double factorial(double num) {
@@ -792,22 +699,14 @@ public class CalculatorDriver extends Application {
 
         prevResult.setText("Previous Operation: " + prevString + "\nPrevious answer: " + forDecimal.format(tempResult));
 
-        clearStringList();
+        
     }
     private void clearAll() {
         clear();
         prevString = "---";
         prevResult.setText("---");
         tempResult = 0;
-        dataArray = null;
         isAllCleared = true;
-    }
-    private void clearStringList() {
-        Iterator<String> removeIter = stringList.iterator();
-        while (removeIter.hasNext()) {
-            removeIter.next();
-            removeIter.remove();
-        }
     }
 
     // *******************Operation Calculation Method*******************
@@ -819,7 +718,7 @@ public class CalculatorDriver extends Application {
             double result = eq.evaluate();
             tempResult = result;
             resultLabel.setText(forDecimal.format(result));
-        clearStringList();
+        
         }  catch (NoOperationException e) {
             clearAll();
             resultLabel.setText("No operator found. Please hit the\nAC button to start over.");

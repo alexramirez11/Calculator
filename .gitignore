@@ -4,3 +4,5 @@
 /lib
 Test.java
 MathListTest.java
+run
+*.class
