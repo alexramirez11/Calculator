@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +29,6 @@ public class CalculatorDriver extends Application {
     private HBox firstRow, secondRow, thirdRow, fourthRow, fifthRow, topBar, prevBar, sixthRow, page2FirstRow, page2SecondRow, page2ThirdRow, page2FourthRow;
     private String resultText = "", tempString = "", pattern = "#.#####", prevString = "", infoString = "";
     private List<String> stringList = new LinkedList<String>();
-    private String[] dataStringArray;
-    private double[] dataArray;
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
@@ -754,7 +751,6 @@ public class CalculatorDriver extends Application {
         prevString = "---";
         prevResult.setText("---");
         tempResult = 0;
-        dataArray = null;
         isAllCleared = true;
     }
     private void clearStringList() {
