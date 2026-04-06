@@ -3,6 +3,7 @@
  * @author Alex Ramirez
  */
 public final class Trig {
+    private static String pi = "π";
 
     /**
      * This method calculates the sin of the given value. This method can handle pi.
@@ -10,7 +11,7 @@ public final class Trig {
      * @return The sin of the given value as a double
      */
     public static double sin(String value) {
-        if (value.equalsIgnoreCase("π")) {
+        if (value.equalsIgnoreCase(pi)) {
             return Math.sin(Math.PI);
         }
         return Math.sin(Double.parseDouble(value));
@@ -22,7 +23,7 @@ public final class Trig {
      * @return The cosine of the given value as a double
      */
     public static double cos(String value) {
-        if (value.equalsIgnoreCase("π")) {
+        if (value.equalsIgnoreCase(pi)) {
             return Math.cos(Math.PI);
         }
         return Math.cos(Double.parseDouble(value));
@@ -34,7 +35,7 @@ public final class Trig {
      * @return The tangent of the given value as a double
      */
     public static double tan(String value) {
-        if (value.equalsIgnoreCase("π")) {
+        if (value.equalsIgnoreCase(pi)) {
             return Math.tan(Math.PI);
         }
         return Math.tan(Double.parseDouble(value));

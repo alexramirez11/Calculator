@@ -35,6 +35,7 @@ public class CalculatorDriver extends Application {
     private double tempResult = 0;
     private DecimalFormat forDecimal;
     private boolean isAllCleared = true;
+    private Data stats;
 
     public static void main(String[] args) {
         launch(args);
@@ -436,30 +437,15 @@ public class CalculatorDriver extends Application {
 
     private void processData() {
         prevString = "data = [" + resultText + "]";
-        dataStringArray = resultText.split(",");
-        if (dataStringArray.length == 0) {
-            throw new NullPointerException();
-        }
-        dataArray = new double[dataStringArray.length];
-        for (int i = 0; i < dataStringArray.length; i++) {
-            if (dataStringArray[i].equals("π")) {
-                dataArray[i] = Math.PI;
-            } else {
-                dataArray[i] = Double.parseDouble(dataStringArray[i]);
-            }
-        }
+        stats = new Data(resultText);
 
         resultLabel.setText("Data: [" + resultText + "]");
         clearStringList();
     }
 
     private void processMean() {
-        prevString = "mean(data)";
-        double avg = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            avg += dataArray[i];
-        }
-        avg = avg / dataArray.length;
+        prevString = "mean(" + stats + ")";
+        double avg = stats.mean();
         resultLabel.setText("Mean(data): " + forDecimal.format(avg));
         tempResult = avg;
         clearStringList();
@@ -476,14 +462,8 @@ public class CalculatorDriver extends Application {
     }
 
     private void processMedian() {
-        prevString = "median(data)";
-        Arrays.sort(dataArray);
-        int mid = dataArray.length / 2;
-        double med = dataArray[mid];
-        if (dataArray.length % 2 == 0) {
-            med = dataArray[mid - 1] + dataArray[mid];
-            med = med / 2;
-        }
+        prevString = "median("+ stats + ")";
+        double med = stats.median();
         resultLabel.setText("Median(data): " + med);
         tempResult = med;
         clearStringList();
@@ -500,18 +480,8 @@ public class CalculatorDriver extends Application {
     }
 
     private void processStandardDeviation() {
-        prevString = "Standard Deviation(data)";
-        double mu = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            mu += dataArray[i];
-        }
-        mu = mu / dataArray.length;
-        double variance = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            variance += Math.pow(dataArray[i] - mu, 2);
-        }
-        variance = variance / dataArray.length;
-        double sd = Math.sqrt(variance);
+        prevString = "Standard Deviation(" + stats + ")";
+        double sd = stats.sd();
         resultLabel.setText("sd(data): " + forDecimal.format(sd));
         tempResult = sd;
         clearStringList();
